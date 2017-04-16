@@ -19,37 +19,27 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearchChange: event => dispatch(setSearchTerm(event.target.value)),
+    onSearchChange: event => {
+      event ? dispatch(setSearchTerm(event.target.value)) : dispatch(setSearchTerm(''))
+    },
     onRequestRecipes: () => dispatch(RequestRecipes),
   }
 }
 
 class App extends Component {
-  constructor() {
-    super();
-    // this.state = {
-    //   recipes: []
-    // };
-  }
-
-  componentDidMount() {
+  componentWillMount() {
     this.props.onRequestRecipes();
   }
 
-  // onSearchChange = evt => {
-  //   console.log(evt.target.value);
-  // };
-
   render() {
     const { recipes, onSearchChange, searchTerm } = this.props;
-    console.log('searchTerm', searchTerm);
     const filteredRecipes = recipes.filter(
           recipe => recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase())
         );
     return (
       <div>
           <RecipeSearch onSearchChange={onSearchChange}/>
-          <RecipeList recipes={filteredRecipes}/>
+          <RecipeList recipes={filteredRecipes} onSearchChange={onSearchChange}/>
       </div>
     );
   }

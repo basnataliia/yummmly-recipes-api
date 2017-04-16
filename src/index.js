@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import App from './Containers/App';
+import RecipeDetails from './Containers/RecipeDetails';
 import './index.css';
 import { RecipeReducer } from './Reducers/RecipeReducer';
 import { SearchReducer } from './Reducers/SearchReducer';
@@ -21,7 +22,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path='/' component={App}/>
       {/* <Route path='add-recipe' component={AddRecipeContainer} /> */}
-      {/* <Route path='recipes/:id' component={RecipeDetails} /> */}
+      <Route path='recipes/:id' component={RecipeDetails} />
     </Router>
   </Provider>,
   document.getElementById('root')

@@ -1,9 +1,12 @@
-import { REQUEST_RECIPES_SUCCESS, REQUEST_RECIPES_ERROR } from './ActionTypes';
+import { REQUEST_RECIPES_SUCCESS,
+         REQUEST_RECIPES_ERROR,
+         GET_RECIPE_BY_ID } from './ActionTypes';
 import { apiCall } from '../api/api';
-import { GET_ALL_RECIPES_URL } from '../constants/api-url';
+import { GET_ALL_RECIPES_URL, GET_RECIPE_BY_ID_URL, APP_ID, APP_KEY } from '../constants/api-url';
 
 export const RequestRecipes = (dispatch) => {
   //fire an API request, upon success fire a success function
+  debugger;
   apiCall(GET_ALL_RECIPES_URL)
     .then(response => dispatch({
       type: REQUEST_RECIPES_SUCCESS,
@@ -14,4 +17,27 @@ export const RequestRecipes = (dispatch) => {
       type: REQUEST_RECIPES_ERROR,
       payload: error
     }))
- }
+ };
+
+
+ export function getRecipe(details) {
+   debugger;
+  return {
+    type: GET_RECIPE_BY_ID,
+    payload: details,
+  };
+}
+
+export function GetRecipeById(recipeId) {
+  const url = GET_RECIPE_BY_ID_URL + `${recipeId}?_app_id=${APP_ID}&_app_key=${APP_KEY}`;
+  return dispatch => {
+    debugger;
+    apiCall(url)
+      .then(response => {
+        dispatch(getRecipe(response));
+      })
+      .catch(error => {
+        throw (error);
+      });
+  };
+}
