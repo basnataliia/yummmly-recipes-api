@@ -7,10 +7,12 @@ import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import App from './Containers/App';
 import './index.css';
-import { recipeReducer } from './Reducers/RecipeReducer';
+import { RecipeReducer } from './Reducers/RecipeReducer';
+import { SearchReducer } from './Reducers/SearchReducer';
 const logger = createLogger();
 const rootReducer = combineReducers({
-  recipes: recipeReducer,
+  recipes: RecipeReducer,
+  search: SearchReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk, logger));

@@ -6,7 +6,7 @@ const recipesInitialState = {
   error: undefined
 }
 
-export const recipeReducer = (state = recipesInitialState, action={}) => {
+export const RecipeReducer = (state = recipesInitialState, action={}) => {
   switch(action.type){
     case REQUEST_RECIPES_SUCCESS:
         return Object.assign({}, state, {recipes: action.payload});
