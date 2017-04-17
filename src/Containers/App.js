@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { apiCall } from '../api/api';
-import { GET_ALL_RECIPES_URL } from '../constants/api-url';
+// import { apiCall } from '../api/api';
+// import { GET_ALL_RECIPES_URL } from '../constants/api-url';
 import { connect } from 'react-redux';
 
 import RecipeList from '../Components/RecipeList';
 import RecipeSearch from '../Components/RecipeSearch';
 
-import { RequestRecipes, deleteRecipe } from '../Actions/RecipeAction';
+import { RequestRecipes, deleteRecipe, onUpdateClick, saveUpdate } from '../Actions/RecipeAction';
 import { setSearchTerm } from '../Actions/SearchAction';
 
 const mapStateToProps = state => {
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
     recipes: state.recipes.recipes,
     error: state.recipes.error,
     searchTerm: state.search.searchTerm,
+    // showUpdate: state.recipes.showUpdate,
   }
 }
 
@@ -24,6 +25,8 @@ const mapDispatchToProps = dispatch => {
     },
     onRequestRecipes: () => dispatch(RequestRecipes),
     onRecipeDelete: (x) => dispatch(deleteRecipe(x)),
+    onUpdateClick: (x) => dispatch(onUpdateClick(x)),
+    onSaveUpdate: (recipeId, name) => dispatch(saveUpdate(recipeId, name)),
   }
 }
 
@@ -32,15 +35,21 @@ class App extends Component {
     this.props.onRequestRecipes();
   }
 
+
   render() {
-    const { recipes, onSearchChange, searchTerm, onRecipeDelete } = this.props;
+    const { recipes, onSearchChange, searchTerm, onRecipeDelete, onUpdateClick, onSaveUpdate } = this.props;
     const filteredRecipes = recipes.filter(
           recipe => recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase())
         );
     return (
       <div>
           <RecipeSearch onSearchChange={onSearchChange}/>
-          <RecipeList recipes={filteredRecipes} onSearchChange={onSearchChange} onRecipeDelete={onRecipeDelete}/>
+          <RecipeList recipes={filteredRecipes}
+                onSearchChange={onSearchChange}
+                onRecipeDelete={onRecipeDelete}
+                onUpdateClick={onUpdateClick}
+                onSaveUpdate={onSaveUpdate}
+              />
       </div>
     );
   }

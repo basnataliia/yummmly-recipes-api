@@ -1,7 +1,9 @@
 import { REQUEST_RECIPES_SUCCESS,
          REQUEST_RECIPES_ERROR,
          GET_RECIPE_BY_ID,
-         DELETE_RECIPE
+         DELETE_RECIPE,
+         UPDATE_CLICK,
+         SAVE_UPDATE
         } from './ActionTypes';
 import { apiCall } from '../api/api';
 import { GET_ALL_RECIPES_URL, GET_RECIPE_BY_ID_URL, APP_ID, APP_KEY } from '../constants/api-url';
@@ -46,5 +48,24 @@ export function GetRecipeById(recipeId) {
       .catch(error => {
         throw (error);
       });
+  };
+}
+
+export function onUpdateClick(recipeId) {
+  debugger;
+  return {
+    type: UPDATE_CLICK,
+    payload: recipeId,
+  };
+}
+
+export function saveUpdate(recipeId, name) {
+  debugger;
+  return {
+    type: SAVE_UPDATE,
+    payload: {
+      recipeId: recipeId,
+      name: name
+    },
   };
 }
