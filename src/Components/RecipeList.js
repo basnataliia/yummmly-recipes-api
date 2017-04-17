@@ -3,10 +3,14 @@ import { PropTypes } from 'prop-types';
 import RecipeItem from './RecipeItem';
 
 
-const RecipeList = ({ recipes, onSearchChange }) => {
+const RecipeList = ({ recipes, onSearchChange, onRecipeDelete }) => {
   const recipesArray = recipes.map(
     recipe =>
-      <RecipeItem key={recipe.id} name={recipe.recipeName} id={recipe.id} onSearchChange={onSearchChange}/>
+      <RecipeItem key={recipe.id}
+        name={recipe.recipeName}
+        id={recipe.id}
+        onSearchChange={onSearchChange}
+        onRecipeDelete={onRecipeDelete}/>
   );
 
   return (
@@ -19,6 +23,7 @@ const RecipeList = ({ recipes, onSearchChange }) => {
 RecipeList.propTypes = {
   recipes: PropTypes.array.isRequired,
   onSearchChange: PropTypes.func.isRequired,
+  onRecipeDelete: PropTypes.func.isRequired,
 };
 
 export default RecipeList

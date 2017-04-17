@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import RecipeList from '../Components/RecipeList';
 import RecipeSearch from '../Components/RecipeSearch';
 
-import { RequestRecipes } from '../Actions/RecipeAction';
+import { RequestRecipes, deleteRecipe } from '../Actions/RecipeAction';
 import { setSearchTerm } from '../Actions/SearchAction';
 
 const mapStateToProps = state => {
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => {
       event ? dispatch(setSearchTerm(event.target.value)) : dispatch(setSearchTerm(''))
     },
     onRequestRecipes: () => dispatch(RequestRecipes),
+    onRecipeDelete: (x) => dispatch(deleteRecipe(x)),
   }
 }
 
@@ -32,14 +33,14 @@ class App extends Component {
   }
 
   render() {
-    const { recipes, onSearchChange, searchTerm } = this.props;
+    const { recipes, onSearchChange, searchTerm, onRecipeDelete } = this.props;
     const filteredRecipes = recipes.filter(
           recipe => recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase())
         );
     return (
       <div>
           <RecipeSearch onSearchChange={onSearchChange}/>
-          <RecipeList recipes={filteredRecipes} onSearchChange={onSearchChange}/>
+          <RecipeList recipes={filteredRecipes} onSearchChange={onSearchChange} onRecipeDelete={onRecipeDelete}/>
       </div>
     );
   }

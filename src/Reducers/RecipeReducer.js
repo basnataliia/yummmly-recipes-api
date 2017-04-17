@@ -1,6 +1,8 @@
 import { REQUEST_RECIPES_SUCCESS,
          REQUEST_RECIPES_ERROR,
-         GET_RECIPE_BY_ID } from '../Actions/ActionTypes';
+         GET_RECIPE_BY_ID,
+         DELETE_RECIPE
+        } from '../Actions/ActionTypes';
 
 
 const recipesInitialState = {
@@ -17,6 +19,9 @@ export const RecipeReducer = (state = recipesInitialState, action={}) => {
         return Object.assign({}, state, {error: action.payload});
     case GET_RECIPE_BY_ID:
         return Object.assign({}, state, {recipeDetails: action.payload});
+    case DELETE_RECIPE:
+        let newRecipes = state.recipes.filter(recipe => recipe.id !== action.payload);
+        return Object.assign({}, state, {recipes: newRecipes});
     default:
         return state;
   }

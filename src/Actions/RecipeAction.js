@@ -1,12 +1,13 @@
 import { REQUEST_RECIPES_SUCCESS,
          REQUEST_RECIPES_ERROR,
-         GET_RECIPE_BY_ID } from './ActionTypes';
+         GET_RECIPE_BY_ID,
+         DELETE_RECIPE
+        } from './ActionTypes';
 import { apiCall } from '../api/api';
 import { GET_ALL_RECIPES_URL, GET_RECIPE_BY_ID_URL, APP_ID, APP_KEY } from '../constants/api-url';
 
 export const RequestRecipes = (dispatch) => {
   //fire an API request, upon success fire a success function
-  debugger;
   apiCall(GET_ALL_RECIPES_URL)
     .then(response => dispatch({
       type: REQUEST_RECIPES_SUCCESS,
@@ -21,11 +22,17 @@ export const RequestRecipes = (dispatch) => {
 
 
  export function getRecipe(details) {
-   debugger;
   return {
     type: GET_RECIPE_BY_ID,
     payload: details,
   };
+}
+
+export function deleteRecipe(recipeId) {
+ return {
+   type: DELETE_RECIPE,
+   payload: recipeId,
+ };
 }
 
 export function GetRecipeById(recipeId) {
