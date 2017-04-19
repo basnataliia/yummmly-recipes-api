@@ -40,7 +40,6 @@ export function deleteRecipe(recipeId) {
 export function GetRecipeById(recipeId) {
   const url = GET_RECIPE_BY_ID_URL + `${recipeId}?_app_id=${APP_ID}&_app_key=${APP_KEY}`;
   return dispatch => {
-    debugger;
     apiCall(url)
       .then(response => {
         dispatch(getRecipe(response));
@@ -52,7 +51,6 @@ export function GetRecipeById(recipeId) {
 }
 
 export function onUpdateClick(recipeId) {
-  debugger;
   return {
     type: UPDATE_CLICK,
     payload: recipeId,

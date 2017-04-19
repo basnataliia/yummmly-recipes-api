@@ -23,11 +23,10 @@ class App extends Component {
 
 
   render() {
-    const { recipeDetails } = this.props;
-    console.log('recipeDetails', recipeDetails);
+    const {recipeDetails} = this.props;
     return (
       <div>
-        { recipeDetails.name }
+        {recipeDetails.name}
       </div>
     );
   }

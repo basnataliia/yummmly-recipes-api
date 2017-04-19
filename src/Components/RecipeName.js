@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import Pencil from 'material-ui/svg-icons/content/create';
 
-const RecipeName = ({ id, name, onUpdateClick, showUpdate, onSaveUpdate }) => {
+const RecipeName = ({id, name, onUpdateClick, showUpdate, onSaveUpdate}) => {
   let recipeNewName= '';
   if(showUpdate) {
     return (
@@ -14,7 +14,8 @@ const RecipeName = ({ id, name, onUpdateClick, showUpdate, onSaveUpdate }) => {
   }
   return (
         <div>
-          <span>{ name }</span><Pencil color="white" style={{marginLeft: '10px', width: '15px', height: '15px'}} onClick={(e) => {
+          <span>{name}</span>
+          <Pencil color="white" style={{marginLeft: '10px', width: '15px', height: '15px'}} onClick={(e) => {
             e.preventDefault();
             onUpdateClick(id)}
           } />

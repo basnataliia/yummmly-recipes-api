@@ -1,0 +1,18 @@
+.ViewRecipe, .DeleteRecipe {
+  background-color: rgba(0,0,0,0.3);
+  bottom: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  position: absolute;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.ViewRecipe {
+    right: 80px;
+}
+
+.DeleteRecipe {
+  right: 10px;
+}

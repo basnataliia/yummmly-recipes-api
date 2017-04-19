@@ -1,4 +1,4 @@
-import { SET_SEARCH_TERM } from  '../Actions/ActionTypes';
+import {SET_SEARCH_TERM} from  '../Actions/ActionTypes';
 
 const searchInitialState = {
   searchTerm: '',

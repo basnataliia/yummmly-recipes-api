@@ -1,13 +1,13 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Link } from 'react-router';
+import {PropTypes} from 'prop-types';
+import {Link} from 'react-router';
 import RecipeName from './RecipeName';
-import { GridTile } from 'material-ui/GridList';
+import {GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import Pencil from 'material-ui/svg-icons/content/create';
+import './RecipeItem.css';
 
-const Recipeitem = ({ id, name, imageUrlsBySize, recipeIngredients, onSearchChange, onRecipeDelete, onUpdateClick, showUpdate, onSaveUpdate }) => {
+const Recipeitem = ({id, name, imageUrlsBySize, recipeIngredients, onSearchChange, onRecipeDelete, onUpdateClick, showUpdate, onSaveUpdate}) => {
 
   let imgSrc = '';
   let ingredients = '';
@@ -27,36 +27,27 @@ const Recipeitem = ({ id, name, imageUrlsBySize, recipeIngredients, onSearchChan
   }
 
   return (
-    // <div>
-    //   <Link to={`/recipes/${id}`} onClick={() => onSearchChange()}><span>{name}</span></Link>
-    //   <span onClick={() => onRecipeDelete(id)}> Delete</span>
-    //   <span onClick={() => onUpdateClick(id)}> Update</span>
-    // </div>
-
     <GridTile
           style={{width:'320px', height:'320px', margin:'20px', boxShadow: '0 5px 15px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12)'}}
-          key={ name }
-          title={
-            <RecipeName id={id} name={name} onUpdateClick={onUpdateClick} showUpdate={showUpdate} onSaveUpdate={onSaveUpdate}/>
-          }
-          subtitle={<span><b>{ ingredients }</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          key={name}
+          title={<RecipeName id={id} name={name} onUpdateClick={onUpdateClick} showUpdate={showUpdate} onSaveUpdate={onSaveUpdate}/>}
+          subtitle={<span><b>{ingredients}</b></span>}
+          actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
           actionPosition="left"
           titlePosition="top"
           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-          cols={ name ? 2 : 1 }
-          rows={ name ? 2 : 1 }
+          cols={name ? 2 : 1}
+          rows={name ? 2 : 1}
           >
-            <img src={ imgSrc } alt={ name }/>
-              <Link to={`/recipes/${id}`} onClick={() => onSearchChange()}
-                    style={{backgroundColor: 'rgba(0,0,0,0.3)', cursor: 'pointer', position:'absolute', padding: '5px 10px', color:'white', bottom:'5px', right:'80px', zIndex:'1000', textDecoration: 'none'}}>View</Link>
-              <a className="deleteRecipeLink"
+            <img src={imgSrc} alt={name}/>
+              <Link to={`/recipes/${id}`} onClick={() => onSearchChange()} className='ViewRecipe'>View</Link>
+              <a className='DeleteRecipe'
                     onClick={(e) => {
                       e.preventDefault();
                       onRecipeDelete(id);
                     }
                   }
-                style={{backgroundColor: 'rgba(0,0,0,0.3)', cursor: 'pointer', display:'block', padding: '5px 10px', position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000'}}>Delete</a>
+              >Delete</a>
         </GridTile>
   );
 }

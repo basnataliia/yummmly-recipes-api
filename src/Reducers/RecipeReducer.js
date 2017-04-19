@@ -11,20 +11,24 @@ const recipesInitialState = {
   recipes: [],
   error: undefined,
   recipeDetails: {},
-  // showUpdate: false,
 }
 
 export const RecipeReducer = (state = recipesInitialState, action={}) => {
   switch(action.type){
+
     case REQUEST_RECIPES_SUCCESS:
         return Object.assign({}, state, {recipes: action.payload});
+
     case REQUEST_RECIPES_ERROR:
         return Object.assign({}, state, {error: action.payload});
+
     case GET_RECIPE_BY_ID:
         return Object.assign({}, state, {recipeDetails: action.payload});
+
     case DELETE_RECIPE:
         let newRecipes = state.recipes.filter(recipe => recipe.id !== action.payload);
         return Object.assign({}, state, {recipes: newRecipes});
+
     case UPDATE_CLICK:
         let updatedRecipesList = state.recipes.map(recipe => {
             if(recipe.id === action.payload) {
@@ -35,20 +39,16 @@ export const RecipeReducer = (state = recipesInitialState, action={}) => {
             }
           });
         return Object.assign({}, state, {recipes: updatedRecipesList});
+
      case SAVE_UPDATE:
-     debugger;
-     console.log('action.payload', action.payload);
         let updatedRecipes = state.recipes.map(recipe => {
             if(recipe.id === action.payload.recipeId) {
-              debugger;
-              // recipe.recipeName = action.payload.name;
               return Object.assign({}, recipe, {recipeName: action.payload.name, showUpdate: false})
-              console.log('recipe', recipe);
-              debugger;
             }
             return recipe;
         });
         return Object.assign({}, state, {recipes: updatedRecipes});
+
     default:
         return state;
   }

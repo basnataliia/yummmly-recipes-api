@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { apiCall } from '../api/api';
-// import { GET_ALL_RECIPES_URL } from '../constants/api-url';
 import { connect } from 'react-redux';
 
 import RecipeList from '../Components/RecipeList';
@@ -14,7 +12,6 @@ const mapStateToProps = state => {
     recipes: state.recipes.recipes,
     error: state.recipes.error,
     searchTerm: state.search.searchTerm,
-    // showUpdate: state.recipes.showUpdate,
   }
 }
 
@@ -38,9 +35,7 @@ class App extends Component {
 
   render() {
     const { recipes, onSearchChange, searchTerm, onRecipeDelete, onUpdateClick, onSaveUpdate } = this.props;
-    const filteredRecipes = recipes.filter(
-          recipe => recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+    const filteredRecipes = recipes.filter(recipe => recipe.recipeName.toLowerCase().includes(searchTerm.toLowerCase()));
     return (
       <div>
           <RecipeSearch onSearchChange={onSearchChange}/>
