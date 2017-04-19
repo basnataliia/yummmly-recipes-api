@@ -8,11 +8,19 @@ const RecipeList = ({ recipes, onSearchChange, onRecipeDelete, onUpdateClick , o
   const recipesArray = recipes.map(
     recipe => {
       if(recipe.showUpdate) {
-        return <RecipeUpdate key={recipe.id} name={recipe.recipeName} id={recipe.id} onSaveUpdate={onSaveUpdate}/>;
+        return <RecipeUpdate
+                    key={recipe.id}
+                    name={recipe.recipeName}
+                    id={recipe.id}
+                    recipeIngredients={recipe.ingredients}
+                    imageUrlsBySize={recipe.imageUrlsBySize}
+                    onSaveUpdate={onSaveUpdate}/>;
       } else {
         return <RecipeItem key={recipe.id}
                   name={recipe.recipeName}
                   id={recipe.id}
+                  recipeIngredients={recipe.ingredients}
+                  imageUrlsBySize={recipe.imageUrlsBySize}
                   onSearchChange={onSearchChange}
                   onRecipeDelete={onRecipeDelete}
                   onUpdateClick={onUpdateClick}
@@ -22,7 +30,7 @@ const RecipeList = ({ recipes, onSearchChange, onRecipeDelete, onUpdateClick , o
   );
 
   return (
-    <div>
+    <div style={{display:'flex', flexWrap:'wrap', justifyContent: 'center', alignItems: 'center'}}>
       { recipesArray }
     </div>
   );

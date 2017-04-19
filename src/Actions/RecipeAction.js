@@ -60,7 +60,6 @@ export function onUpdateClick(recipeId) {
 }
 
 export function saveUpdate(recipeId, name) {
-  debugger;
   return {
     type: SAVE_UPDATE,
     payload: {
