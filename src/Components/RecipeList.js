@@ -4,18 +4,18 @@ import RecipeItem from './RecipeItem';
 import RecipeUpdate from './RecipeUpdate';
 
 
-const RecipeList = ({ recipes, onSearchChange, onRecipeDelete, onUpdateClick , onSaveUpdate}) => {
+const RecipeList = ({recipes, onSearchChange, onRecipeDelete, onUpdateClick , onSaveUpdate, showUpdate}) => {
   const recipesArray = recipes.map(
     recipe => {
-      if(recipe.showUpdate) {
-        return <RecipeUpdate
-                    key={recipe.id}
-                    name={recipe.recipeName}
-                    id={recipe.id}
-                    recipeIngredients={recipe.ingredients}
-                    imageUrlsBySize={recipe.imageUrlsBySize}
-                    onSaveUpdate={onSaveUpdate}/>;
-      } else {
+      // if(recipe.showUpdate) {
+      //   return <RecipeUpdate
+      //               key={recipe.id}
+      //               name={recipe.recipeName}
+      //               id={recipe.id}
+      //               recipeIngredients={recipe.ingredients}
+      //               imageUrlsBySize={recipe.imageUrlsBySize}
+      //               onSaveUpdate={onSaveUpdate}/>;
+      // } else {
         return <RecipeItem key={recipe.id}
                   name={recipe.recipeName}
                   id={recipe.id}
@@ -24,8 +24,10 @@ const RecipeList = ({ recipes, onSearchChange, onRecipeDelete, onUpdateClick , o
                   onSearchChange={onSearchChange}
                   onRecipeDelete={onRecipeDelete}
                   onUpdateClick={onUpdateClick}
+                  onSaveUpdate={onSaveUpdate}
+                  showUpdate={recipe.showUpdate}
                 />;
-      }
+      // }
     }
   );
 

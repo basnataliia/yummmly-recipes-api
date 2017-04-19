@@ -5,10 +5,7 @@ import { Link } from 'react-router';
 const RecipeUpdate = ({id, name, onSaveUpdate}) => {
   let recipeNewName= '';
   return (
-    // <div>
-    //   <input value={name}/>
-    //   <button onClick={() => onSaveUpdate(id, 'test name')}>Save</button>
-    // </div>
+
      <form onSubmit={() => onSaveUpdate(id, recipeNewName)}>
         <input name="recipeName" type="text" defaultValue={name} onChange={(e) => recipeNewName = e.target.value} />
         <button type="submit">Save</button>

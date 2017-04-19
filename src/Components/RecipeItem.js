@@ -1,43 +1,44 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router';
+import RecipeName from './RecipeName';
 import { GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Pencil from 'material-ui/svg-icons/content/create';
 
-const Recipeitem = ({ id, name, imageUrlsBySize, recipeIngredients, onSearchChange, onRecipeDelete, onUpdateClick }) => {
+const Recipeitem = ({ id, name, imageUrlsBySize, recipeIngredients, onSearchChange, onRecipeDelete, onUpdateClick, showUpdate, onSaveUpdate }) => {
+
   let imgSrc = '';
   let ingredients = '';
+
   if(imageUrlsBySize) {
     imgSrc = imageUrlsBySize[90];
     let n = imgSrc.indexOf('=');
     imgSrc = imgSrc.substring(0, n !== -1 ? n : imgSrc.length);
     imgSrc = `${imgSrc}=s320-c-e365`;
-  }
-  else {
+  } else {
     imgSrc = 'http://i.imgur.com/gUv5Ne4.png';
   }
 
-  if(recipeIngredients){
+  if(recipeIngredients) {
     ingredients = recipeIngredients;
     ingredients = ingredients.join(', ');
   }
+
   return (
     // <div>
     //   <Link to={`/recipes/${id}`} onClick={() => onSearchChange()}><span>{name}</span></Link>
     //   <span onClick={() => onRecipeDelete(id)}> Delete</span>
     //   <span onClick={() => onUpdateClick(id)}> Update</span>
     // </div>
-    <Link to={`/recipes/${id}`} onClick={() => onSearchChange()}>
+
     <GridTile
           style={{width:'320px', height:'320px', margin:'20px', boxShadow: '0 5px 15px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12)'}}
           key={ name }
-          title={<div><span>{ name }</span><Pencil color="white" style={{marginLeft: '10px', width: '15', height: '1'}} onClick={(e) => {
-            e.preventDefault();
-            onUpdateClick(id)
-           }
-          } /></div>}
+          title={
+            <RecipeName id={id} name={name} onUpdateClick={onUpdateClick} showUpdate={showUpdate} onSaveUpdate={onSaveUpdate}/>
+          }
           subtitle={<span><b>{ ingredients }</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
           actionPosition="left"
@@ -47,17 +48,16 @@ const Recipeitem = ({ id, name, imageUrlsBySize, recipeIngredients, onSearchChan
           rows={ name ? 2 : 1 }
           >
             <img src={ imgSrc } alt={ name }/>
-            <div style={{position:'absolute', backgroundColor: 'rgba(0,0,0,0.3)', bottom:'5px', width:'67px', 'height':'30px', right:'15px'}}>
+              <Link to={`/recipes/${id}`} onClick={() => onSearchChange()}
+                    style={{backgroundColor: 'rgba(0,0,0,0.3)', cursor: 'pointer', position:'absolute', padding: '5px 10px', color:'white', bottom:'5px', right:'80px', zIndex:'1000', textDecoration: 'none'}}>View</Link>
               <a className="deleteRecipeLink"
                     onClick={(e) => {
                       e.preventDefault();
                       onRecipeDelete(id);
                     }
                   }
-                style={{position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000', textDecoration:'underline'}}>Delete</a>
-            </div>
+                style={{backgroundColor: 'rgba(0,0,0,0.3)', cursor: 'pointer', display:'block', padding: '5px 10px', position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000'}}>Delete</a>
         </GridTile>
-      </Link>
   );
 }
 
