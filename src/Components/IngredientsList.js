@@ -2,9 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const IngredientsList = ({ingredients}) => {
-  const ingredientsLi = ingredients.map(ingredient => {
+  const ingredientsLi = ingredients.map((ingredient, index) => {
     return (
-      <li>{ingredient}</li>
+      <li key={index}>{ingredient}</li>
     );
   });
 

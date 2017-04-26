@@ -22,8 +22,6 @@ class App extends Component {
 
   render() {
     const {recipeDetails} = this.props;
-    debugger;
-    console.log('recipeDetails', recipeDetails);
     if(recipeDetails.ingredientLines) {
       return (
         <div>
