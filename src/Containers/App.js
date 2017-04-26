@@ -39,7 +39,8 @@ class App extends Component {
     return (
       <div>
           <RecipeSearch onSearchChange={onSearchChange}/>
-          <RecipeList recipes={filteredRecipes}
+          <RecipeList
+                recipes={filteredRecipes}
                 onSearchChange={onSearchChange}
                 onRecipeDelete={onRecipeDelete}
                 onUpdateClick={onUpdateClick}

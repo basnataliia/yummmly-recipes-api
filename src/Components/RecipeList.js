@@ -6,7 +6,8 @@ const RecipeList = ({recipes, onSearchChange, onRecipeDelete, onUpdateClick , on
   const recipesArray = recipes.map(
     recipe => {
         return (
-          <RecipeItem key={recipe.id}
+          <RecipeItem
+                  key={recipe.id}
                   name={recipe.recipeName}
                   id={recipe.id}
                   recipeIngredients={recipe.ingredients}
@@ -34,6 +35,7 @@ RecipeList.propTypes = {
   onRecipeDelete: PropTypes.func.isRequired,
   onUpdateClick: PropTypes.func.isRequired,
   onSaveUpdate: PropTypes.func.isRequired,
+  showUpdate: PropTypes.bool,
 };
 
 export default RecipeList

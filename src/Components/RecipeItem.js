@@ -8,7 +8,6 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import './RecipeItem.css';
 
 const Recipeitem = ({id, name, imageUrlsBySize, recipeIngredients, onSearchChange, onRecipeDelete, onUpdateClick, showUpdate, onSaveUpdate}) => {
-
   let imgSrc = '';
   let ingredients = '';
 
@@ -55,10 +54,13 @@ const Recipeitem = ({id, name, imageUrlsBySize, recipeIngredients, onSearchChang
 Recipeitem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  imageUrlsBySize: PropTypes.object,
   recipeIngredients: PropTypes.array.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onRecipeDelete: PropTypes.func.isRequired,
   onUpdateClick: PropTypes.func.isRequired,
+  showUpdate: PropTypes.bool,
+  onSaveUpdate: PropTypes.func.isRequired,
 };
 
 export default Recipeitem;
