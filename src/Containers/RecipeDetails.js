@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GetRecipeById } from '../Actions/RecipeAction';
-
+import IngredientsList from '../Components/IngredientsList';
 
 const mapStateToProps = state => {
   return {
@@ -16,19 +16,23 @@ const mapDispatchToProps = dispatch => {
 }
 
 class App extends Component {
-
   componentDidMount() {
     this.props.displayRecipe(this.props.params.id);
   }
 
-
   render() {
     const {recipeDetails} = this.props;
-    return (
-      <div>
-        {recipeDetails.name}
-      </div>
-    );
+    debugger;
+    console.log('recipeDetails', recipeDetails);
+    if(recipeDetails.ingredientLines) {
+      return (
+        <div>
+          {recipeDetails.name}
+          <IngredientsList ingredients={recipeDetails.ingredientLines}/>
+        </div>
+      );
+    }
+    return null;
   }
 }
 
